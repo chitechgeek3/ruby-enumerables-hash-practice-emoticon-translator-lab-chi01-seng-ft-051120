@@ -15,8 +15,24 @@
   emoji_hash
 end
 
-def get_japanese_emoticon
+def get_japanese_emoticon(filepath, emoji)
   # code goes here
+  
+  jpn_data = load_library(filepath)
+  
+  jpn_emoticon = ""
+  jpn_sorry = "Sorry, that emoticon was not found"
+  jpn_data.each do |name, values|
+    if values.value?(emoji)
+      jpn_emoticon = values[:japanese]
+    end
+  end
+  if jpn_emoticon.empty?
+    jpn_sorry
+  else
+    jpn_emoticon
+  end
+  
 end
 
 def get_english_meaning
